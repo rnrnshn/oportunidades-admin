@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import type { ArticleFormInput } from '@/features/articles/api/articles'
+import { RichTextEditor } from '@/features/articles/components/rich-text-editor'
 import type { Article } from '@/features/articles/schemas/article.schema'
 import { confirmUpload, presignUpload, uploadFile } from '@/features/uploads/api/uploads'
 
@@ -25,9 +26,15 @@ interface ArticleFormProps {
 		defaultValues: {
 			title: article?.title ?? '',
 			type: article?.type ?? 'news',
-			excerpt: '',
-			content: '',
+			excerpt: article?.excerpt ?? '',
+			content: article?.content ?? '',
+			content_json: article?.content_json,
 			cover_image_url: '',
+			source_name: article?.source_name ?? '',
+			source_url: article?.source_url ?? '',
+			seo_title: article?.seo_title ?? '',
+			seo_description: article?.seo_description ?? '',
+			is_featured: article?.is_featured ?? false,
 		},
 	})
 
@@ -40,6 +47,8 @@ interface ArticleFormProps {
 	}
 
 	const typeValue = watch('type') || 'news'
+	const contentValue = watch('content') || ''
+	const contentJsonValue = watch('content_json') as Record<string, unknown> | undefined
 
 	return (
 		<EditorShell title={article ? 'Edit article' : 'Create article'}>
@@ -65,10 +74,16 @@ interface ArticleFormProps {
 						<Label htmlFor="excerpt">Excerpt</Label>
 						<Textarea id="excerpt" {...register('excerpt')} />
 					</div>
-					<div className="space-y-2">
-						<Label htmlFor="content">Content</Label>
-						<Textarea id="content" {...register('content')} />
-					</div>
+					<RichTextEditor
+						label="Content"
+						placeholder="Write the article body..."
+						html={contentValue}
+						json={contentJsonValue as never}
+						onChange={({ html, json }) => {
+							setValue('content', html)
+							setValue('content_json', json)
+						}}
+					/>
 					<div className="space-y-2">
 						<Label htmlFor="cover">Cover image</Label>
 						<Input id="cover" type="file" accept="image/*" onChange={(event) => handleFileChange(event.target.files?.[0] ?? null)} />

@@ -36,6 +36,7 @@ export interface ArticleFormInput {
 	type: string
 	excerpt?: string
 	content: string
+	content_json?: unknown
 	cover_image_url?: string
 	is_featured?: boolean
 	seo_title?: string
