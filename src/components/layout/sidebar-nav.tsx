@@ -1,4 +1,4 @@
-import { Briefcase, Building2, FileText, GraduationCap, Home, LogOut, User } from 'lucide-react'
+import { Briefcase, Building2, FileText, Flag, GraduationCap, Home, LogOut, User } from 'lucide-react'
 import { Link, useRouterState } from '@tanstack/react-router'
 
 import { buttonVariants } from '@/components/ui/button'
@@ -10,6 +10,7 @@ const navItems = [
 	{ to: '/opportunities', label: 'Opportunities', icon: Briefcase },
 	{ to: '/universities', label: 'Universities', icon: Building2 },
 	{ to: '/courses', label: 'Courses', icon: GraduationCap },
+	{ to: '/reports', label: 'Reports', icon: Flag },
 	{ to: '/account', label: 'Account', icon: User },
 ]
 

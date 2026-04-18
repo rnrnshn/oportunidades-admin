@@ -14,6 +14,7 @@ import { LoginPage } from '@/routes/login'
 import { OpportunityEditPage } from '@/routes/opportunity-edit'
 import { OpportunityNewPage } from '@/routes/opportunity-new'
 import { OpportunitiesListPage } from '@/routes/opportunities-list'
+import { ReportsListPage } from '@/routes/reports-list'
 import { UniversityEditPage } from '@/routes/university-edit'
 import { UniversityNewPage } from '@/routes/university-new'
 import { UniversitiesListPage } from '@/routes/universities-list'
@@ -136,6 +137,12 @@ const courseEditRoute = createRoute({
 	component: CourseEditPage,
 })
 
+const reportsRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: '/reports',
+	component: ReportsListPage,
+})
+
 const routeTree = rootRoute.addChildren([
 	loginRoute,
 	dashboardRoute,
@@ -151,6 +158,7 @@ const routeTree = rootRoute.addChildren([
 	coursesRoute,
 	courseNewRoute,
 	courseEditRoute,
+	reportsRoute,
 	accountRoute,
 ])
 
