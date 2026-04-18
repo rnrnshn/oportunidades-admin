@@ -1,4 +1,4 @@
-import { FileText, Home, LogOut, User } from 'lucide-react'
+import { Briefcase, Building2, FileText, Home, LogOut, User } from 'lucide-react'
 import { Link, useRouterState } from '@tanstack/react-router'
 
 import { buttonVariants } from '@/components/ui/button'
@@ -7,6 +7,8 @@ import { cn } from '@/lib/utils'
 const navItems = [
 	{ to: '/', label: 'Dashboard', icon: Home },
 	{ to: '/articles', label: 'Articles', icon: FileText },
+	{ to: '/opportunities', label: 'Opportunities', icon: Briefcase },
+	{ to: '/universities', label: 'Universities', icon: Building2 },
 	{ to: '/account', label: 'Account', icon: User },
 ]
 

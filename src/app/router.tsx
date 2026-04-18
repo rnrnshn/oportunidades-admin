@@ -8,6 +8,12 @@ import { ArticleNewPage } from '@/routes/article-new'
 import { ArticlesListPage } from '@/routes/articles-list'
 import { DashboardPage } from '@/routes/dashboard'
 import { LoginPage } from '@/routes/login'
+import { OpportunityEditPage } from '@/routes/opportunity-edit'
+import { OpportunityNewPage } from '@/routes/opportunity-new'
+import { OpportunitiesListPage } from '@/routes/opportunities-list'
+import { UniversityEditPage } from '@/routes/university-edit'
+import { UniversityNewPage } from '@/routes/university-new'
+import { UniversitiesListPage } from '@/routes/universities-list'
 
 function ProtectedLayout() {
 	const currentUser = useCurrentUser()
@@ -73,12 +79,54 @@ const accountRoute = createRoute({
 	component: AccountPage,
 })
 
+const opportunitiesRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: '/opportunities',
+	component: OpportunitiesListPage,
+})
+
+const opportunityNewRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: '/opportunities/new',
+	component: OpportunityNewPage,
+})
+
+const opportunityEditRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: '/opportunities/$id',
+	component: OpportunityEditPage,
+})
+
+const universitiesRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: '/universities',
+	component: UniversitiesListPage,
+})
+
+const universityNewRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: '/universities/new',
+	component: UniversityNewPage,
+})
+
+const universityEditRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: '/universities/$id',
+	component: UniversityEditPage,
+})
+
 const routeTree = rootRoute.addChildren([
 	loginRoute,
 	dashboardRoute,
 	articlesRoute,
 	articleNewRoute,
 	articleEditRoute,
+	opportunitiesRoute,
+	opportunityNewRoute,
+	opportunityEditRoute,
+	universitiesRoute,
+	universityNewRoute,
+	universityEditRoute,
 	accountRoute,
 ])
 

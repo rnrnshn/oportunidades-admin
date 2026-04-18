@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Select } from '@/components/ui/select'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import type { ArticleFormInput } from '@/features/articles/api/articles'
 import type { Article } from '@/features/articles/schemas/article.schema'
@@ -19,9 +19,9 @@ interface ArticleFormProps {
 	onArchive?: () => Promise<void>
 }
 
-export function ArticleForm({ article, onSubmit, onPublish, onUnpublish, onArchive }: ArticleFormProps) {
+	export function ArticleForm({ article, onSubmit, onPublish, onUnpublish, onArchive }: ArticleFormProps) {
 	const [coverUrl, setCoverUrl] = useState('')
-	const { register, handleSubmit, formState: { isSubmitting } } = useForm<ArticleFormInput>({
+	const { register, handleSubmit, setValue, watch, formState: { isSubmitting } } = useForm<ArticleFormInput>({
 		defaultValues: {
 			title: article?.title ?? '',
 			type: article?.type ?? 'news',
@@ -39,6 +39,8 @@ export function ArticleForm({ article, onSubmit, onPublish, onUnpublish, onArchi
 		setCoverUrl(confirmed.public_url)
 	}
 
+	const typeValue = watch('type') || 'news'
+
 	return (
 		<Card>
 			<CardHeader>
@@ -52,10 +54,15 @@ export function ArticleForm({ article, onSubmit, onPublish, onUnpublish, onArchi
 					</div>
 					<div className="space-y-2">
 						<Label htmlFor="type">Type</Label>
-						<Select id="type" {...register('type')}>
-							<option value="news">News</option>
-							<option value="guide">Guide</option>
-							<option value="editorial">Editorial</option>
+						<Select value={typeValue} onValueChange={(value) => setValue('type', value ?? 'news')}>
+							<SelectTrigger id="type" className="w-full">
+								<SelectValue placeholder="Select type" />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectItem value="news">News</SelectItem>
+								<SelectItem value="guide">Guide</SelectItem>
+								<SelectItem value="editorial">Editorial</SelectItem>
+							</SelectContent>
 						</Select>
 					</div>
 					<div className="space-y-2">
