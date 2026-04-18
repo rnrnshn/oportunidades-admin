@@ -9,6 +9,8 @@ export const ReportSchema = z.object({
 	entity_id: IdSchema,
 	reason: z.string(),
 	status: z.string(),
+	reviewed_by: IdSchema.optional(),
+	moderation_notes: z.string().optional(),
 	resolved_at: z.string().optional(),
 })
 

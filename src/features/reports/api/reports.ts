@@ -23,10 +23,15 @@ export async function fetchReports(filters: ReportFilters) {
 	return ReportsResponseSchema.parse(data)
 }
 
-export async function updateReportStatus(id: string, status: string) {
+export async function fetchReport(id: string) {
+	const data = await apiRequest<Report>(`/v1/admin/reports/${id}`)
+	return ReportSchema.parse(data)
+}
+
+export async function updateReportStatus(id: string, status: string, moderationNotes?: string) {
 	const data = await apiRequest<Report>(`/v1/admin/reports/${id}`, {
 		method: 'PATCH',
-		body: JSON.stringify({ status }),
+		body: JSON.stringify({ status, moderation_notes: moderationNotes }),
 	})
 	return ReportSchema.parse(data)
 }

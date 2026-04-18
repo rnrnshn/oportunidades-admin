@@ -1,3 +1,5 @@
+import { Link } from '@tanstack/react-router'
+
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { PageHeader } from '@/components/layout/page-header'
@@ -64,6 +66,7 @@ export function ReportsTable({ reports, filters, onFilterChange, onStatusChange 
 									<Badge variant={report.status === 'resolved' ? 'default' : report.status === 'dismissed' ? 'destructive' : 'secondary'}>{report.status}</Badge>
 								</TableCell>
 								<TableCell className="space-x-2">
+									<Link className="text-sm text-kumo-link underline-offset-2 hover:underline" to="/reports/$id" params={{ id: report.id }}>View</Link>
 									<Button size="sm" variant="secondary" onClick={() => onStatusChange(report.id, 'reviewed')}>Review</Button>
 									<Button size="sm" variant="outline" onClick={() => onStatusChange(report.id, 'resolved')}>Resolve</Button>
 									<Button size="sm" variant="destructive" onClick={() => onStatusChange(report.id, 'dismissed')}>Dismiss</Button>
