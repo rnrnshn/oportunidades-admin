@@ -8,6 +8,11 @@ export const UniversitySchema = z.object({
 	name: z.string(),
 	type: z.string(),
 	province: z.string(),
+	description: z.string().optional(),
+	logo_url: z.string().optional(),
+	website: z.string().optional(),
+	email: z.string().optional(),
+	phone: z.string().optional(),
 	verified: z.boolean(),
 	created_by: IdSchema,
 })
