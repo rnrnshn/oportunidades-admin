@@ -11,6 +11,8 @@ import { CourseEditPage } from '@/routes/course-edit'
 import { CourseNewPage } from '@/routes/course-new'
 import { CoursesListPage } from '@/routes/courses-list'
 import { LoginPage } from '@/routes/login'
+import { MentorshipSessionDetailPage } from '@/routes/mentorship-session-detail'
+import { MentorshipSessionsListPage } from '@/routes/mentorship-sessions-list'
 import { OpportunityEditPage } from '@/routes/opportunity-edit'
 import { OpportunityNewPage } from '@/routes/opportunity-new'
 import { OpportunitiesListPage } from '@/routes/opportunities-list'
@@ -143,6 +145,18 @@ const reportsRoute = createRoute({
 	component: ReportsListPage,
 })
 
+const mentorshipSessionsRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: '/mentorship/sessions',
+	component: MentorshipSessionsListPage,
+})
+
+const mentorshipSessionDetailRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: '/mentorship/sessions/$id',
+	component: MentorshipSessionDetailPage,
+})
+
 const routeTree = rootRoute.addChildren([
 	loginRoute,
 	dashboardRoute,
@@ -159,6 +173,8 @@ const routeTree = rootRoute.addChildren([
 	courseNewRoute,
 	courseEditRoute,
 	reportsRoute,
+	mentorshipSessionsRoute,
+	mentorshipSessionDetailRoute,
 	accountRoute,
 ])
 
