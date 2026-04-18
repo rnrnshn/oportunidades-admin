@@ -1,9 +1,11 @@
 import { z } from 'zod'
 
+const IdSchema = z.string().min(1)
+
 export const SessionSchema = z.object({
-	id: z.string().uuid(),
-	mentor_id: z.string().uuid(),
-	requester_id: z.string().uuid(),
+	id: IdSchema,
+	mentor_id: IdSchema,
+	requester_id: IdSchema,
 	message: z.string(),
 	status: z.string(),
 	scheduled_at: z.string().optional(),

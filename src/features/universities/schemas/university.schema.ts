@@ -1,13 +1,15 @@
 import { z } from 'zod'
 
+const IdSchema = z.string().min(1)
+
 export const UniversitySchema = z.object({
-	id: z.string().uuid(),
+	id: IdSchema,
 	slug: z.string(),
 	name: z.string(),
 	type: z.string(),
 	province: z.string(),
 	verified: z.boolean(),
-	created_by: z.string().uuid(),
+	created_by: IdSchema,
 })
 
 export const UniversitiesResponseSchema = z.object({

@@ -1,9 +1,11 @@
 import { z } from 'zod'
 
+const IdSchema = z.string().min(1)
+
 export const CourseSchema = z.object({
-	id: z.string().uuid(),
+	id: IdSchema,
 	slug: z.string(),
-	university_id: z.string().uuid(),
+	university_id: IdSchema,
 	name: z.string(),
 	area: z.string(),
 	level: z.string(),

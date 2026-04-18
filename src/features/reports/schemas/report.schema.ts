@@ -1,10 +1,12 @@
 import { z } from 'zod'
 
+const IdSchema = z.string().min(1)
+
 export const ReportSchema = z.object({
-	id: z.string().uuid(),
-	reporter_id: z.string().uuid(),
+	id: IdSchema,
+	reporter_id: IdSchema,
 	entity_type: z.string(),
-	entity_id: z.string().uuid(),
+	entity_id: IdSchema,
 	reason: z.string(),
 	status: z.string(),
 	resolved_at: z.string().optional(),

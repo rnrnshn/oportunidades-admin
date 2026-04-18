@@ -1,12 +1,14 @@
 import { z } from 'zod'
 
+const IdSchema = z.string().min(1)
+
 export const ArticleSchema = z.object({
-	id: z.string().uuid(),
+	id: IdSchema,
 	slug: z.string(),
 	title: z.string(),
 	type: z.string(),
 	status: z.string(),
-	author_id: z.string().uuid(),
+	author_id: IdSchema,
 	published_at: z.string().optional(),
 })
 

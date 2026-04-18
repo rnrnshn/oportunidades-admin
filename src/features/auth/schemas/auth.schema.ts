@@ -1,10 +1,12 @@
 import { z } from 'zod'
 
+const IdSchema = z.string().min(1)
+
 export const LoginResponseSchema = z.object({
 	access_token: z.string(),
 	expires_in: z.number(),
 	user: z.object({
-		id: z.string().uuid(),
+		id: IdSchema,
 		email: z.string().email(),
 		role: z.string(),
 		name: z.string(),
@@ -13,7 +15,7 @@ export const LoginResponseSchema = z.object({
 })
 
 export const CurrentUserSchema = z.object({
-	id: z.string().uuid(),
+	id: IdSchema,
 	email: z.string().email(),
 	role: z.string(),
 	name: z.string(),
