@@ -7,48 +7,72 @@
 
 :root {
 	color-scheme: light;
-	font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-	background-color: #f8fafc;
-	color: #0f172a;
-	--background: oklch(1 0 0);
-	--foreground: oklch(0.145 0 0);
-	--card: oklch(1 0 0);
-	--card-foreground: oklch(0.145 0 0);
-	--popover: oklch(1 0 0);
-	--popover-foreground: oklch(0.145 0 0);
-	--primary: oklch(0.205 0 0);
-	--primary-foreground: oklch(0.985 0 0);
-	--secondary: oklch(0.97 0 0);
-	--secondary-foreground: oklch(0.205 0 0);
-	--muted: oklch(0.97 0 0);
-	--muted-foreground: oklch(0.556 0 0);
-	--accent: oklch(0.97 0 0);
-	--accent-foreground: oklch(0.205 0 0);
-	--destructive: oklch(0.577 0.245 27.325);
-	--border: oklch(0.922 0 0);
-	--input: oklch(0.922 0 0);
-	--ring: oklch(0.708 0 0);
-	--chart-1: oklch(0.87 0 0);
-	--chart-2: oklch(0.556 0 0);
-	--chart-3: oklch(0.439 0 0);
-	--chart-4: oklch(0.371 0 0);
-	--chart-5: oklch(0.269 0 0);
-	--radius: 0.625rem;
-	--sidebar: oklch(0.985 0 0);
-	--sidebar-foreground: oklch(0.145 0 0);
-	--sidebar-primary: oklch(0.205 0 0);
-	--sidebar-primary-foreground: oklch(0.985 0 0);
-	--sidebar-accent: oklch(0.97 0 0);
-	--sidebar-accent-foreground: oklch(0.205 0 0);
-	--sidebar-border: oklch(0.922 0 0);
-	--sidebar-ring: oklch(0.708 0 0);
+	font-family: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+	--color-kumo-brand: #2271b1;
+	--color-kumo-brand-hover: #135e96;
+	--text-color-kumo-brand: #2271b1;
+	--color-kumo-base: #ffffff;
+	--color-kumo-elevated: #f0f0f1;
+	--color-kumo-recessed: #dcdcde;
+	--color-kumo-overlay: #ffffff;
+	--color-kumo-control: #ffffff;
+	--color-kumo-tint: #f6f7f7;
+	--color-kumo-fill: #dcdcde;
+	--color-kumo-fill-hover: #c3c4c7;
+	--color-kumo-contrast: #1d2327;
+	--color-kumo-interact: #c3c4c7;
+	--color-kumo-line: #c3c4c7;
+	--color-kumo-ring: #2271b1;
+	--text-color-kumo-default: #1d2327;
+	--text-color-kumo-strong: #50575e;
+	--text-color-kumo-subtle: #787c82;
+	--text-color-kumo-inactive: #a7aaad;
+	--text-color-kumo-link: #2271b1;
+	--color-kumo-info: #72aee6;
+	--color-kumo-info-tint: #e7f4fe;
+	--color-kumo-success: #00a32a;
+	--color-kumo-success-tint: #edfaef;
+	--color-kumo-warning: #dba617;
+	--color-kumo-warning-tint: #fcf9e8;
+	--color-kumo-danger: #d63638;
+	--color-kumo-danger-tint: #fcf0f1;
+	--text-color-kumo-success: #00a32a;
+	--text-color-kumo-danger: #d63638;
+	--text-color-kumo-warning: #dba617;
+	--background: var(--color-kumo-elevated);
+	--foreground: var(--text-color-kumo-default);
+	--card: var(--color-kumo-base);
+	--card-foreground: var(--text-color-kumo-default);
+	--popover: var(--color-kumo-base);
+	--popover-foreground: var(--text-color-kumo-default);
+	--primary: var(--color-kumo-brand);
+	--primary-foreground: #ffffff;
+	--secondary: var(--color-kumo-tint);
+	--secondary-foreground: var(--text-color-kumo-default);
+	--muted: var(--color-kumo-tint);
+	--muted-foreground: var(--text-color-kumo-subtle);
+	--accent: var(--color-kumo-tint);
+	--accent-foreground: var(--text-color-kumo-default);
+	--destructive: var(--color-kumo-danger);
+	--border: var(--color-kumo-line);
+	--input: var(--color-kumo-line);
+	--ring: var(--color-kumo-ring);
+	--radius: 0.375rem;
+	--sidebar: #101517;
+	--sidebar-foreground: rgba(255, 255, 255, 0.88);
+	--sidebar-primary: var(--color-kumo-brand);
+	--sidebar-primary-foreground: #ffffff;
+	--sidebar-accent: rgba(255, 255, 255, 0.08);
+	--sidebar-accent-foreground: #ffffff;
+	--sidebar-border: rgba(255, 255, 255, 0.08);
+	--sidebar-ring: var(--color-kumo-brand);
 }
 
 body {
 	margin: 0;
 	min-height: 100vh;
-	background: #f8fafc;
-	color: #0f172a;
+	background: var(--color-kumo-elevated);
+	color: var(--text-color-kumo-default);
 }
 
 #root {
@@ -58,6 +82,36 @@ body {
 @theme inline {
 	--font-heading: var(--font-sans);
 	--font-sans: 'Geist Variable', sans-serif;
+	--color-kumo-brand: var(--color-kumo-brand);
+	--color-kumo-brand-hover: var(--color-kumo-brand-hover);
+	--color-kumo-base: var(--color-kumo-base);
+	--color-kumo-elevated: var(--color-kumo-elevated);
+	--color-kumo-recessed: var(--color-kumo-recessed);
+	--color-kumo-overlay: var(--color-kumo-overlay);
+	--color-kumo-control: var(--color-kumo-control);
+	--color-kumo-tint: var(--color-kumo-tint);
+	--color-kumo-fill: var(--color-kumo-fill);
+	--color-kumo-fill-hover: var(--color-kumo-fill-hover);
+	--color-kumo-contrast: var(--color-kumo-contrast);
+	--color-kumo-interact: var(--color-kumo-interact);
+	--color-kumo-line: var(--color-kumo-line);
+	--color-kumo-ring: var(--color-kumo-ring);
+	--color-kumo-info: var(--color-kumo-info);
+	--color-kumo-info-tint: var(--color-kumo-info-tint);
+	--color-kumo-success: var(--color-kumo-success);
+	--color-kumo-success-tint: var(--color-kumo-success-tint);
+	--color-kumo-warning: var(--color-kumo-warning);
+	--color-kumo-warning-tint: var(--color-kumo-warning-tint);
+	--color-kumo-danger: var(--color-kumo-danger);
+	--color-kumo-danger-tint: var(--color-kumo-danger-tint);
+	--text-color-kumo-default: var(--text-color-kumo-default);
+	--text-color-kumo-strong: var(--text-color-kumo-strong);
+	--text-color-kumo-subtle: var(--text-color-kumo-subtle);
+	--text-color-kumo-inactive: var(--text-color-kumo-inactive);
+	--text-color-kumo-link: var(--text-color-kumo-link);
+	--text-color-kumo-success: var(--text-color-kumo-success);
+	--text-color-kumo-danger: var(--text-color-kumo-danger);
+	--text-color-kumo-warning: var(--text-color-kumo-warning);
 	--color-sidebar-ring: var(--sidebar-ring);
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -134,12 +188,16 @@ body {
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+		border-color: var(--color-kumo-line);
+    @apply outline-ring/50;
 	}
   body {
     @apply bg-background text-foreground;
 	}
   html {
     @apply font-sans;
+	}
+	#root {
+		isolation: isolate;
 	}
 }

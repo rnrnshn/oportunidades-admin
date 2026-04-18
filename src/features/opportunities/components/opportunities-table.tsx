@@ -1,9 +1,8 @@
 import { Link } from '@tanstack/react-router'
-
 import { Badge } from '@/components/ui/badge'
 import { buttonVariants } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
+import { PageHeader } from '@/components/layout/page-header'
+import { SearchToolbar } from '@/components/layout/search-toolbar'
 import {
 	Select,
 	SelectContent,
@@ -27,14 +26,14 @@ interface OpportunitiesTableProps {
 
 export function OpportunitiesTable({ opportunities, filters, onFilterChange }: OpportunitiesTableProps) {
 	return (
-		<Card>
-			<CardHeader className="flex flex-row items-center justify-between">
-				<CardTitle>Opportunities</CardTitle>
-				<Link className={cn(buttonVariants())} to="/opportunities/new">New opportunity</Link>
-			</CardHeader>
-			<CardContent className="space-y-4">
-				<div className="grid gap-3 md:grid-cols-3">
-					<Input placeholder="Search title/entity" value={filters.q} onChange={(event) => onFilterChange('q', event.target.value)} />
+		<div className="space-y-4">
+			<PageHeader actions={<Link className={cn(buttonVariants())} to="/opportunities/new">Add New</Link>} title="Opportunities" />
+			<SearchToolbar
+				placeholder="Search opportunities..."
+				value={filters.q}
+				onChange={(value) => onFilterChange('q', value)}
+				filters={
+					<>
 					<Select value={filters.type || 'all-types'} onValueChange={(value) => onFilterChange('type', value === 'all-types' ? '' : (value ?? ''))}>
 						<SelectTrigger className="w-full"><SelectValue placeholder="All types" /></SelectTrigger>
 						<SelectContent>
@@ -52,7 +51,10 @@ export function OpportunitiesTable({ opportunities, filters, onFilterChange }: O
 							<SelectItem value="false">Inactive</SelectItem>
 						</SelectContent>
 					</Select>
-				</div>
+					</>
+				}
+			/>
+				<div className="overflow-x-auto rounded-md border bg-kumo-base">
 				<Table>
 					<TableHeader>
 						<TableRow>
@@ -79,7 +81,7 @@ export function OpportunitiesTable({ opportunities, filters, onFilterChange }: O
 						))}
 					</TableBody>
 				</Table>
-			</CardContent>
-		</Card>
+				</div>
+		</div>
 	)
 }

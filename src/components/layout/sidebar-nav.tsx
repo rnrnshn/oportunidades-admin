@@ -1,7 +1,6 @@
 import { Briefcase, Building2, FileText, Flag, GraduationCap, Handshake, Home, LogOut, User } from 'lucide-react'
 import { Link, useRouterState } from '@tanstack/react-router'
 
-import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 const navItems = [
@@ -19,10 +18,10 @@ export function SidebarNav() {
 	const pathname = useRouterState({ select: (state) => state.location.pathname })
 
 	return (
-		<aside className="flex h-screen w-64 flex-col border-r border-slate-200 bg-white">
-			<div className="border-b border-slate-200 px-6 py-5">
-				<p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Oportunidades</p>
-				<h1 className="mt-1 text-lg font-semibold text-slate-900">Admin UI</h1>
+		<aside className="flex h-screen w-64 flex-col border-r border-white/8 bg-[var(--sidebar)] text-[var(--sidebar-foreground)]">
+			<div className="border-b border-white/8 px-6 py-5">
+				<p className="text-xs font-semibold uppercase tracking-wide text-white/50">Oportunidades</p>
+				<h1 className="mt-1 text-lg font-semibold text-white">Admin UI</h1>
 			</div>
 			<nav className="flex-1 space-y-1 p-4">
 				{navItems.map((item) => {
@@ -33,18 +32,18 @@ export function SidebarNav() {
 							key={item.to}
 							to={item.to}
 							className={cn(
-								buttonVariants({ variant: active ? 'default' : 'ghost', size: 'default' }),
-								'w-full justify-start',
+								'flex min-h-[36px] w-full min-w-0 items-center gap-2.5 rounded-md px-3 py-1.5 text-[13px] no-underline transition-all duration-200 ease-out',
+								active ? 'bg-kumo-brand text-white' : 'text-white/70 hover:bg-white/8 hover:text-white',
 							)}
 						>
-							<Icon className="h-4 w-4" />
+							<Icon className={cn('size-[18px] shrink-0', active ? 'text-white' : 'text-white/60')} />
 							{item.label}
 						</Link>
 					)
 				})}
 			</nav>
-			<div className="border-t border-slate-200 p-4">
-				<div className={cn(buttonVariants({ variant: 'ghost' }), 'w-full justify-start text-slate-500')}>
+			<div className="border-t border-white/8 p-4">
+				<div className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-white/50">
 					<LogOut className="h-4 w-4" />
 					Session handled by API
 				</div>

@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { EditorShell } from '@/components/layout/editor-shell'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -42,11 +42,7 @@ interface ArticleFormProps {
 	const typeValue = watch('type') || 'news'
 
 	return (
-		<Card>
-			<CardHeader>
-				<CardTitle>{article ? 'Edit article' : 'Create article'}</CardTitle>
-			</CardHeader>
-			<CardContent>
+		<EditorShell title={article ? 'Edit article' : 'Create article'}>
 				<form className="space-y-4" onSubmit={handleSubmit(async (values) => onSubmit({ ...values, cover_image_url: coverUrl || values.cover_image_url }))}>
 					<div className="space-y-2">
 						<Label htmlFor="title">Title</Label>
@@ -85,7 +81,6 @@ interface ArticleFormProps {
 						{article && onArchive ? <Button type="button" variant="destructive" onClick={() => void onArchive()}>Archive</Button> : null}
 					</div>
 				</form>
-			</CardContent>
-		</Card>
+		</EditorShell>
 	)
 }

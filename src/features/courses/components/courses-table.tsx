@@ -1,8 +1,7 @@
 import { Link } from '@tanstack/react-router'
-
 import { buttonVariants } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
+import { PageHeader } from '@/components/layout/page-header'
+import { SearchToolbar } from '@/components/layout/search-toolbar'
 import {
 	Select,
 	SelectContent,
@@ -24,14 +23,14 @@ interface CoursesTableProps {
 
 export function CoursesTable({ courses, filters, onFilterChange, universities }: CoursesTableProps) {
 	return (
-		<Card>
-			<CardHeader className="flex flex-row items-center justify-between">
-				<CardTitle>Courses</CardTitle>
-				<Link className={cn(buttonVariants())} to="/courses/new">New course</Link>
-			</CardHeader>
-			<CardContent className="space-y-4">
-				<div className="grid gap-3 md:grid-cols-3">
-					<Input placeholder="Search course" value={filters.q} onChange={(event) => onFilterChange('q', event.target.value)} />
+		<div className="space-y-4">
+			<PageHeader actions={<Link className={cn(buttonVariants())} to="/courses/new">Add New</Link>} title="Courses" />
+			<SearchToolbar
+				placeholder="Search courses..."
+				value={filters.q}
+				onChange={(value) => onFilterChange('q', value)}
+				filters={
+					<>
 					<Select value={filters.level || 'all-levels'} onValueChange={(value) => onFilterChange('level', value === 'all-levels' ? '' : (value ?? ''))}>
 						<SelectTrigger className="w-full"><SelectValue placeholder="All levels" /></SelectTrigger>
 						<SelectContent>
@@ -50,7 +49,10 @@ export function CoursesTable({ courses, filters, onFilterChange, universities }:
 							))}
 						</SelectContent>
 					</Select>
-				</div>
+					</>
+				}
+			/>
+				<div className="overflow-x-auto rounded-md border bg-kumo-base">
 				<Table>
 					<TableHeader>
 						<TableRow>
@@ -75,7 +77,7 @@ export function CoursesTable({ courses, filters, onFilterChange, universities }:
 						))}
 					</TableBody>
 				</Table>
-			</CardContent>
-		</Card>
+				</div>
+		</div>
 	)
 }

@@ -1,7 +1,7 @@
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
+import { PageHeader } from '@/components/layout/page-header'
+import { SearchToolbar } from '@/components/layout/search-toolbar'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import type { Report } from '@/features/reports/schemas/report.schema'
@@ -15,13 +15,14 @@ interface ReportsTableProps {
 
 export function ReportsTable({ reports, filters, onFilterChange, onStatusChange }: ReportsTableProps) {
 	return (
-		<Card>
-			<CardHeader>
-				<CardTitle>Reports moderation</CardTitle>
-			</CardHeader>
-			<CardContent className="space-y-4">
-				<div className="grid gap-3 md:grid-cols-3">
-					<Input placeholder="Search reason" value={filters.q} onChange={(event) => onFilterChange('q', event.target.value)} />
+		<div className="space-y-4">
+			<PageHeader title="Reports" />
+			<SearchToolbar
+				placeholder="Search reports..."
+				value={filters.q}
+				onChange={(value) => onFilterChange('q', value)}
+				filters={
+					<>
 					<Select value={filters.status || 'all-statuses'} onValueChange={(value) => onFilterChange('status', value === 'all-statuses' ? '' : (value ?? ''))}>
 						<SelectTrigger className="w-full"><SelectValue placeholder="All statuses" /></SelectTrigger>
 						<SelectContent>
@@ -41,7 +42,10 @@ export function ReportsTable({ reports, filters, onFilterChange, onStatusChange 
 							<SelectItem value="opportunity">Opportunity</SelectItem>
 						</SelectContent>
 					</Select>
-				</div>
+					</>
+				}
+			/>
+				<div className="overflow-x-auto rounded-md border bg-kumo-base">
 				<Table>
 					<TableHeader>
 						<TableRow>
@@ -68,7 +72,7 @@ export function ReportsTable({ reports, filters, onFilterChange, onStatusChange 
 						))}
 					</TableBody>
 				</Table>
-			</CardContent>
-		</Card>
+				</div>
+		</div>
 	)
 }

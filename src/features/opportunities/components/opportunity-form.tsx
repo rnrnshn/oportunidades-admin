@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 
+import { EditorShell } from '@/components/layout/editor-shell'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
@@ -37,11 +37,7 @@ export function OpportunityForm({ opportunity, onSubmit, onVerify, onReject, onD
 	const typeValue = watch('type') || 'bolsa'
 
 	return (
-		<Card>
-			<CardHeader>
-				<CardTitle>{opportunity ? 'Edit opportunity' : 'Create opportunity'}</CardTitle>
-			</CardHeader>
-			<CardContent>
+		<EditorShell title={opportunity ? 'Edit opportunity' : 'Create opportunity'}>
 				<form className="space-y-4" onSubmit={handleSubmit((values) => onSubmit(values))}>
 					<div className="space-y-2">
 						<Label htmlFor="title">Title</Label>
@@ -77,7 +73,6 @@ export function OpportunityForm({ opportunity, onSubmit, onVerify, onReject, onD
 						{opportunity && onDeactivate ? <Button type="button" variant="destructive" onClick={() => void onDeactivate()}>Deactivate</Button> : null}
 					</div>
 				</form>
-			</CardContent>
-		</Card>
+		</EditorShell>
 	)
 }

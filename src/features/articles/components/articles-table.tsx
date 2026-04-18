@@ -1,9 +1,8 @@
 import { Link } from '@tanstack/react-router'
-
 import { Badge } from '@/components/ui/badge'
 import { buttonVariants } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
+import { PageHeader } from '@/components/layout/page-header'
+import { SearchToolbar } from '@/components/layout/search-toolbar'
 import {
 	Select,
 	SelectContent,
@@ -27,16 +26,14 @@ interface ArticlesTableProps {
 
 export function ArticlesTable({ articles, filters, onFilterChange }: ArticlesTableProps) {
 	return (
-		<Card>
-			<CardHeader className="flex flex-row items-center justify-between">
-				<div>
-					<CardTitle>Articles</CardTitle>
-				</div>
-				<Link className={cn(buttonVariants())} to="/articles/new">New article</Link>
-			</CardHeader>
-			<CardContent className="space-y-4">
-				<div className="grid gap-3 md:grid-cols-3">
-					<Input placeholder="Search title/content" value={filters.q} onChange={(event) => onFilterChange('q', event.target.value)} />
+		<div className="space-y-4">
+			<PageHeader actions={<Link className={cn(buttonVariants())} to="/articles/new">Add New</Link>} title="Articles" />
+			<SearchToolbar
+				placeholder="Search articles..."
+				value={filters.q}
+				onChange={(value) => onFilterChange('q', value)}
+				filters={
+					<>
 					<Select value={filters.type || 'all-types'} onValueChange={(value) => onFilterChange('type', value === 'all-types' ? '' : (value ?? ''))}>
 						<SelectTrigger className="w-full">
 							<SelectValue placeholder="All types" />
@@ -59,7 +56,10 @@ export function ArticlesTable({ articles, filters, onFilterChange }: ArticlesTab
 							<SelectItem value="archived">Archived</SelectItem>
 						</SelectContent>
 					</Select>
-				</div>
+					</>
+				}
+			/>
+				<div className="overflow-x-auto rounded-md border bg-kumo-base">
 				<Table>
 					<TableHeader>
 						<TableRow>
@@ -86,7 +86,7 @@ export function ArticlesTable({ articles, filters, onFilterChange }: ArticlesTab
 						))}
 					</TableBody>
 				</Table>
-			</CardContent>
-		</Card>
+				</div>
+		</div>
 	)
 }

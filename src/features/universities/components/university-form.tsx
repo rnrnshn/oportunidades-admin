@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { EditorShell } from '@/components/layout/editor-shell'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
@@ -42,9 +42,7 @@ export function UniversityForm({ onSubmit, university }: UniversityFormProps) {
 	}
 
 	return (
-		<Card>
-			<CardHeader><CardTitle>{university ? 'Edit university' : 'Create university'}</CardTitle></CardHeader>
-			<CardContent>
+		<EditorShell title={university ? 'Edit university' : 'Create university'}>
 				<form className="space-y-4" onSubmit={handleSubmit((values) => onSubmit({ ...values, logo_url: logoUrl || values.logo_url }))}>
 					<div className="space-y-2"><Label htmlFor="name">Name</Label><Input id="name" {...register('name')} /></div>
 					<div className="space-y-2">
@@ -67,7 +65,6 @@ export function UniversityForm({ onSubmit, university }: UniversityFormProps) {
 					<div className="space-y-2"><Label htmlFor="phone">Phone</Label><Input id="phone" {...register('phone')} /></div>
 					<Button disabled={isSubmitting} type="submit">{university ? 'Save changes' : 'Create university'}</Button>
 				</form>
-			</CardContent>
-		</Card>
+		</EditorShell>
 	)
 }

@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 
+import { EditorShell } from '@/components/layout/editor-shell'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
@@ -37,9 +37,7 @@ export function CourseForm({ onSubmit, course, universities }: CourseFormProps) 
 	const universityValue = watch('university_id') || ''
 
 	return (
-		<Card>
-			<CardHeader><CardTitle>{course ? 'Edit course' : 'Create course'}</CardTitle></CardHeader>
-			<CardContent>
+		<EditorShell title={course ? 'Edit course' : 'Create course'}>
 				<form className="space-y-4" onSubmit={handleSubmit((values) => onSubmit(values))}>
 					<div className="space-y-2">
 						<Label htmlFor="university_id">University</Label>
@@ -81,7 +79,6 @@ export function CourseForm({ onSubmit, course, universities }: CourseFormProps) 
 					<div className="space-y-2"><Label htmlFor="entry_requirements">Entry requirements</Label><Textarea id="entry_requirements" {...register('entry_requirements')} /></div>
 					<Button disabled={isSubmitting} type="submit">{course ? 'Save changes' : 'Create course'}</Button>
 				</form>
-			</CardContent>
-		</Card>
+		</EditorShell>
 	)
 }
