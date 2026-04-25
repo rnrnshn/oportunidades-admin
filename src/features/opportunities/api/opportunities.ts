@@ -22,9 +22,22 @@ export interface OpportunityFormInput {
 	requirements?: string
 	deadline?: string
 	apply_url?: string
+	external_url_label?: string
 	country: string
+	location?: string
+	is_remote?: boolean
 	language?: string
 	area?: string
+	hero_image_url?: string
+	provider_logo_url?: string
+	amount_min?: string
+	amount_max?: string
+	amount_currency?: string
+	coverage?: string[]
+	eligibility?: string
+	application_process?: string
+	degree_level?: string
+	program_area?: string
 }
 
 function buildQuery(filters: OpportunityFilters) {

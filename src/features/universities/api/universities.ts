@@ -18,11 +18,23 @@ export interface UniversityFormInput {
 	name: string
 	type: string
 	province: string
+	city?: string
+	country?: string
 	description?: string
 	logo_url?: string
+	campus_image_url?: string
 	website?: string
 	email?: string
 	phone?: string
+	founded_year?: number
+	address?: string
+	map_url?: string
+	academic_calendar?: string
+	student_count?: number
+	admissions_deadline?: string
+	tags?: string[]
+	fees?: Array<{ label: string; value: string; sort_order: number }>
+	scholarships?: Array<{ name: string; amount?: string; status: string; sort_order: number }>
 }
 
 function buildQuery(filters: UniversityFilters) {
