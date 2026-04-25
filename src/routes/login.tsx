@@ -2,6 +2,8 @@ import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { useForm } from 'react-hook-form'
 
+import oportunidadesLogo from '@oportunidades-assets/Oportunidades Logo - FInal.svg'
+
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -24,8 +26,9 @@ export function LoginPage() {
 	return (
 		<div className="flex min-h-screen items-center justify-center bg-slate-50 p-6">
 			<Card className="w-full max-w-md">
-				<CardHeader>
-					<CardTitle>Oportunidades Admin</CardTitle>
+				<CardHeader className="items-center gap-3 text-center">
+					<img className="h-12 w-auto" src={oportunidadesLogo} alt="Oportunidades" width="3109" height="551" />
+					<CardTitle>Admin</CardTitle>
 				</CardHeader>
 				<CardContent>
 					<form className="space-y-4" onSubmit={handleSubmit((values) => mutation.mutate(values))}>

@@ -1,4 +1,4 @@
-import { Briefcase, Building2, FileText, Flag, GraduationCap, Handshake, Home, LogOut, User } from 'lucide-react'
+import { Briefcase, Building2, FileText, Flag, GraduationCap, Handshake, Home, User } from 'lucide-react'
 import { Link, useRouterState } from '@tanstack/react-router'
 
 import { cn } from '@/lib/utils'
@@ -18,12 +18,12 @@ export function SidebarNav() {
 	const pathname = useRouterState({ select: (state) => state.location.pathname })
 
 	return (
-		<aside className="flex h-screen w-64 flex-col border-r border-white/8 bg-[var(--sidebar)] text-[var(--sidebar-foreground)]">
+		<aside className="sticky top-0 flex h-screen w-64 shrink-0 flex-col border-r border-white/8 bg-[var(--sidebar)] text-[var(--sidebar-foreground)]">
 			<div className="border-b border-white/8 px-6 py-5">
 				<p className="text-xs font-semibold uppercase tracking-wide text-white/50">Oportunidades</p>
 				<h1 className="mt-1 text-lg font-semibold text-white">Admin UI</h1>
 			</div>
-			<nav className="flex-1 space-y-1 p-4">
+			<nav className="min-h-0 flex-1 space-y-1 overflow-y-auto p-4">
 				{navItems.map((item) => {
 					const Icon = item.icon
 					const active = pathname === item.to || pathname.startsWith(`${item.to}/`)
@@ -42,12 +42,6 @@ export function SidebarNav() {
 					)
 				})}
 			</nav>
-			<div className="border-t border-white/8 p-4">
-				<div className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-white/50">
-					<LogOut className="h-4 w-4" />
-					Session handled by API
-				</div>
-			</div>
 		</aside>
 	)
 }

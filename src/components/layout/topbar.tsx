@@ -25,7 +25,7 @@ export function Topbar() {
 	}
 
 	return (
-		<header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b bg-kumo-base px-4">
+		<header className="sticky top-0 z-20 flex h-16 shrink-0 items-center justify-between border-b bg-kumo-base px-4">
 			<div className="text-kumo-subtle text-sm">Management</div>
 			<div className="flex items-center gap-2">
 				<a className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }))} href="/" rel="noreferrer" target="_blank">

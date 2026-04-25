@@ -5,11 +5,11 @@ import { Topbar } from '@/components/layout/topbar'
 
 export function AppShell({ children }: PropsWithChildren) {
 	return (
-		<div className="flex min-h-screen bg-kumo-elevated text-kumo-default">
+		<div className="flex h-screen overflow-hidden bg-kumo-elevated text-kumo-default">
 			<SidebarNav />
-			<div className="flex min-h-screen flex-1 flex-col overflow-hidden">
+			<div className="flex h-screen min-w-0 flex-1 flex-col overflow-hidden">
 				<Topbar />
-				<main className="flex-1 overflow-y-auto p-6">
+				<main className="min-h-0 flex-1 overflow-y-auto p-6">
 					{children}
 				</main>
 			</div>

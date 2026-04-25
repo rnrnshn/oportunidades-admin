@@ -53,6 +53,17 @@ export function ArticleForm({ article, onSubmit, onPublish, onUnpublish, onArchi
 						<CardHeader><CardTitle>Status</CardTitle></CardHeader>
 						<CardContent className="space-y-3 text-sm text-kumo-subtle">
 							<p className="font-medium text-kumo-default">{article?.status ?? 'draft'}</p>
+							<div className="space-y-2">
+								<Label htmlFor="article-type">Type</Label>
+								<Select value={typeValue} onValueChange={(value) => setValue('type', value ?? 'news')}>
+									<SelectTrigger id="article-type" className="w-full"><SelectValue placeholder="Select type" /></SelectTrigger>
+									<SelectContent>
+										<SelectItem value="news">News</SelectItem>
+										<SelectItem value="guide">Guide</SelectItem>
+										<SelectItem value="editorial">Editorial</SelectItem>
+									</SelectContent>
+								</Select>
+							</div>
 							<div className="flex flex-col gap-2">
 								<Button disabled={isSubmitting} form="article-form" type="submit">{article ? 'Save changes' : 'Create article'}</Button>
 								{article && onPublish ? <Button type="button" variant="secondary" onClick={() => void onPublish()}>Publish</Button> : null}
@@ -65,7 +76,6 @@ export function ArticleForm({ article, onSubmit, onPublish, onUnpublish, onArchi
 					<Card size="sm">
 						<CardHeader><CardTitle>Metadata</CardTitle></CardHeader>
 						<CardContent className="space-y-3 text-sm text-kumo-subtle">
-							<div><p className="font-medium text-kumo-default">Type</p><p>{typeValue}</p></div>
 							<div><p className="font-medium text-kumo-default">Featured</p><p>{featuredValue ? 'Yes' : 'No'}</p></div>
 							<div><p className="font-medium text-kumo-default">Cover</p><p className="break-all">{coverUrl || 'Not uploaded yet'}</p></div>
 						</CardContent>
@@ -81,17 +91,6 @@ export function ArticleForm({ article, onSubmit, onPublish, onUnpublish, onArchi
 				<div className="space-y-2">
 					<Label htmlFor="title">Title</Label>
 					<Input id="title" {...register('title')} />
-				</div>
-				<div className="space-y-2">
-					<Label htmlFor="type">Type</Label>
-					<Select value={typeValue} onValueChange={(value) => setValue('type', value ?? 'news')}>
-						<SelectTrigger id="type" className="w-full"><SelectValue placeholder="Select type" /></SelectTrigger>
-						<SelectContent>
-							<SelectItem value="news">News</SelectItem>
-							<SelectItem value="guide">Guide</SelectItem>
-							<SelectItem value="editorial">Editorial</SelectItem>
-						</SelectContent>
-					</Select>
 				</div>
 				<div className="space-y-2">
 					<Label htmlFor="excerpt">Excerpt</Label>
