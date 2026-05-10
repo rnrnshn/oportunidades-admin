@@ -11,17 +11,20 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { useCurrentUser } from '@/features/auth/hooks/use-current-user'
-import { clearAccessToken } from '@/lib/auth-store'
+import { logout } from '@/features/auth/api/auth'
 import { cn } from '@/lib/utils'
 
 export function Topbar() {
 	const queryClient = useQueryClient()
 	const { data: user } = useCurrentUser()
 
-	function handleLogout() {
-		clearAccessToken()
-		queryClient.clear()
-		window.location.href = '/login'
+	async function handleLogout() {
+		try {
+			await logout()
+		} finally {
+			queryClient.clear()
+			window.location.href = '/login'
+		}
 	}
 
 	return (

@@ -1,6 +1,7 @@
 import { Briefcase, Building2, FileText, Flag, GraduationCap, Handshake, Home, User } from 'lucide-react'
 import { Link, useRouterState } from '@tanstack/react-router'
 
+import logoIcon from '@oportunidades-assets/Oportunidades Logo - Icon - FInal - White.png'
 import { cn } from '@/lib/utils'
 
 const navItems = [
@@ -19,9 +20,12 @@ export function SidebarNav() {
 
 	return (
 		<aside className="sticky top-0 flex h-screen w-64 shrink-0 flex-col border-r border-white/8 bg-[var(--sidebar)] text-[var(--sidebar-foreground)]">
-			<div className="border-b border-white/8 px-6 py-5">
-				<p className="text-xs font-semibold uppercase tracking-wide text-white/50">Oportunidades</p>
-				<h1 className="mt-1 text-lg font-semibold text-white">Admin UI</h1>
+			<div className="flex items-center gap-3 border-b border-white/8 px-5 py-5">
+				<img src={logoIcon} alt="Oportunidades" className="h-8 w-8" width="200" height="200" />
+				<div>
+					<p className="text-sm font-semibold text-white">Oportunidades</p>
+					<p className="text-[11px] text-white/50">Admin</p>
+				</div>
 			</div>
 			<nav className="min-h-0 flex-1 space-y-1 overflow-y-auto p-4">
 				{navItems.map((item) => {
