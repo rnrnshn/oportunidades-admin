@@ -27,3 +27,27 @@ export async function fetchDashboard() {
 	const data = await apiRequest<DashboardData>('/v1/admin/dashboard')
 	return DashboardSchema.parse(data)
 }
+
+const DailyContentSchema = z.object({
+	date: z.string(),
+	articles: z.number(),
+	opportunities: z.number(),
+})
+
+const TypeCountSchema = z.object({
+	label: z.string(),
+	count: z.number(),
+})
+
+const AnalyticsSchema = z.object({
+	content_over_time: z.array(DailyContentSchema),
+	opportunities_by_type: z.array(TypeCountSchema),
+	opportunities_by_status: z.array(TypeCountSchema),
+})
+
+export type AnalyticsData = z.infer<typeof AnalyticsSchema>
+
+export async function fetchAnalytics(days: number) {
+	const data = await apiRequest<AnalyticsData>(`/v1/admin/dashboard/analytics?days=${days}`)
+	return AnalyticsSchema.parse(data)
+}
