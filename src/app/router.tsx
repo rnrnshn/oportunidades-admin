@@ -1,6 +1,7 @@
 import { createRootRoute, createRoute, createRouter, Navigate, Outlet, useRouterState } from '@tanstack/react-router'
 
 import { AppShell } from '@/components/layout/app-shell'
+import { Spinner } from '@/components/ui/spinner'
 import { useCurrentUser } from '@/features/auth/hooks/use-current-user'
 import { AccountPage } from '@/routes/account'
 import { ArticleEditPage } from '@/routes/article-edit'
@@ -26,7 +27,12 @@ function ProtectedLayout() {
 	const currentUser = useCurrentUser()
 
 	if (currentUser.isLoading) {
-		return <div className="flex min-h-screen items-center justify-center text-sm text-slate-500">Loading admin...</div>
+		return (
+			<div className="flex min-h-screen flex-col items-center justify-center gap-3 bg-kumo-elevated">
+				<Spinner size="lg" />
+				<p className="text-sm text-kumo-subtle animate-in fade-in duration-500">A carregar...</p>
+			</div>
+		)
 	}
 
 	if (!currentUser.data) {
