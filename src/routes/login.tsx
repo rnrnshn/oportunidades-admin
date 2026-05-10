@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useNavigate, useSearch } from '@tanstack/react-router'
 import { useForm } from 'react-hook-form'
 
-import oportunidadesLogo from '@oportunidades-assets/Oportunidades Logo - Final - Black.png'
+import oportunidadesLogo from '@oportunidades-assets/Oportunidades Logo - FInal (1).png'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
