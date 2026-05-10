@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { LoadingState } from '@/components/ui/state'
 import { CoursesTable } from '@/features/courses/components/courses-table'
 import { useCourses } from '@/features/courses/hooks/use-courses'
 import { useUniversities } from '@/features/universities/hooks/use-universities'
@@ -10,7 +11,7 @@ export function CoursesListPage() {
 	const universitiesQuery = useUniversities({})
 
 	if (coursesQuery.isLoading || universitiesQuery.isLoading) {
-		return <p className="text-sm text-slate-500">Loading courses...</p>
+		return <LoadingState />
 	}
 
 	return (

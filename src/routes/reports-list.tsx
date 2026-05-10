@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { LoadingState } from '@/components/ui/state'
 import { ReportsTable } from '@/features/reports/components/reports-table'
 import { useReports, useUpdateReportStatus } from '@/features/reports/hooks/use-reports'
 
@@ -9,7 +10,7 @@ export function ReportsListPage() {
 	const updateStatus = useUpdateReportStatus()
 
 	if (reportsQuery.isLoading) {
-		return <p className="text-sm text-slate-500">Loading reports...</p>
+		return <LoadingState />
 	}
 
 	return (

@@ -1,5 +1,6 @@
 import { useParams } from '@tanstack/react-router'
 
+import { LoadingState } from '@/components/ui/state'
 import { SessionDetail } from '@/features/mentorship/components/session-detail'
 import { useSession, useUpdateSessionStatus } from '@/features/mentorship/hooks/use-sessions'
 
@@ -9,7 +10,7 @@ export function MentorshipSessionDetailPage() {
 	const updateStatus = useUpdateSessionStatus(id)
 
 	if (sessionQuery.isLoading) {
-		return <p className="text-sm text-slate-500">Loading session...</p>
+		return <LoadingState />
 	}
 
 	if (!sessionQuery.data) {

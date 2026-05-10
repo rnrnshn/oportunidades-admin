@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { LoadingState } from '@/components/ui/state'
 import { ArticlesTable } from '@/features/articles/components/articles-table'
 import { useArticles } from '@/features/articles/hooks/use-articles'
 
@@ -8,7 +9,7 @@ export function ArticlesListPage() {
 	const { data, isLoading } = useArticles(filters)
 
 	if (isLoading) {
-		return <p className="text-sm text-slate-500">Loading articles...</p>
+		return <LoadingState />
 	}
 
 	return (

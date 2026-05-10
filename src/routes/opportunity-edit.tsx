@@ -1,5 +1,6 @@
 import { useParams } from '@tanstack/react-router'
 
+import { LoadingState } from '@/components/ui/state'
 import { OpportunityForm } from '@/features/opportunities/components/opportunity-form'
 import { useOpportunity, useOpportunityLifecycle, useUpdateOpportunity } from '@/features/opportunities/hooks/use-opportunities'
 
@@ -10,7 +11,7 @@ export function OpportunityEditPage() {
 	const lifecycle = useOpportunityLifecycle(id)
 
 	if (opportunityQuery.isLoading) {
-		return <p className="text-sm text-slate-500">Loading opportunity...</p>
+		return <LoadingState />
 	}
 
 	if (!opportunityQuery.data) {

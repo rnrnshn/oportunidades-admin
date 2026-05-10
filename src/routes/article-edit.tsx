@@ -1,5 +1,6 @@
 import { useParams } from '@tanstack/react-router'
 
+import { LoadingState } from '@/components/ui/state'
 import { ArticleForm } from '@/features/articles/components/article-form'
 import { useArticle, useArticleLifecycle, useUpdateArticle } from '@/features/articles/hooks/use-articles'
 
@@ -10,7 +11,7 @@ export function ArticleEditPage() {
 	const lifecycle = useArticleLifecycle(id)
 
 	if (articleQuery.isLoading) {
-		return <p className="text-sm text-slate-500">Loading article...</p>
+		return <LoadingState />
 	}
 
 	if (!articleQuery.data) {

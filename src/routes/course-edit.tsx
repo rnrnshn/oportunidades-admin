@@ -1,5 +1,6 @@
 import { useParams } from '@tanstack/react-router'
 
+import { LoadingState } from '@/components/ui/state'
 import { CourseForm } from '@/features/courses/components/course-form'
 import { useCourse, useUpdateCourse } from '@/features/courses/hooks/use-courses'
 import { useUniversities } from '@/features/universities/hooks/use-universities'
@@ -11,7 +12,7 @@ export function CourseEditPage() {
 	const universitiesQuery = useUniversities({})
 
 	if (courseQuery.isLoading || universitiesQuery.isLoading) {
-		return <p className="text-sm text-slate-500">Loading course...</p>
+		return <LoadingState />
 	}
 
 	if (!courseQuery.data) {

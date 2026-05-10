@@ -1,11 +1,13 @@
-import { AlertTriangle, Inbox, LoaderCircle } from 'lucide-react'
+import { AlertTriangle, Inbox } from 'lucide-react'
 
-export function LoadingState({ message }: { message: string }) {
+import { Spinner } from '@/components/ui/spinner'
+
+export function LoadingState({ message }: { message?: string }) {
 	return (
-		<div className="flex min-h-[240px] items-center justify-center rounded-md border bg-kumo-base text-kumo-subtle">
-			<div className="flex items-center gap-2 text-sm">
-				<LoaderCircle className="h-4 w-4 animate-spin" />
-				{message}
+		<div className="flex min-h-[240px] items-center justify-center rounded-md border bg-kumo-base animate-in fade-in duration-300">
+			<div className="flex flex-col items-center gap-3">
+				<Spinner size="md" />
+				{message ? <p className="text-sm text-kumo-subtle">{message}</p> : null}
 			</div>
 		</div>
 	)

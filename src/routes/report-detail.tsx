@@ -1,5 +1,6 @@
 import { useParams } from '@tanstack/react-router'
 
+import { LoadingState } from '@/components/ui/state'
 import { ReportDetail } from '@/features/reports/components/report-detail'
 import { useReport, useUpdateReportStatus } from '@/features/reports/hooks/use-reports'
 
@@ -9,7 +10,7 @@ export function ReportDetailPage() {
 	const updateStatus = useUpdateReportStatus()
 
 	if (reportQuery.isLoading) {
-		return <p className="text-sm text-slate-500">Loading report...</p>
+		return <LoadingState />
 	}
 
 	if (!reportQuery.data) {
